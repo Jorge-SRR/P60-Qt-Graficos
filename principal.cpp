@@ -50,7 +50,7 @@ void Principal::dibujar()
     int increYN1 = this->increY(altoN1);
 
     // Dibujar primera barra
-    painter.drawRect(x+50, y+50+increYN1,100,altoN1);
+    painter.drawRect(x+75, y+50+increYN1,100,altoN1);
 
     // Crear un objeto color para el relleno
     QColor colorRelleno(190,120,162);
@@ -72,7 +72,7 @@ void Principal::dibujar()
     int increYN2 = this->increY(altoN2);
 
     // Dibujar segunda barra
-    painter.drawRect(x+170, y+50+increYN2, 100, altoN2);
+    painter.drawRect(x+195, y+50+increYN2, 100, altoN2);
 
     // Creando los colores de la tercera barra
     QColor cRellenoBarra3(253, 253, 115);
@@ -89,11 +89,30 @@ void Principal::dibujar()
     int increYN3 = this->increY(altoN3);
 
     // Dibujar tercera barra
-    painter.drawRect(x+290,y+50+increYN3,100,altoN3);
+    painter.drawRect(x+315,y+50+increYN3,100,altoN3);
 
     string str = promedio();
     QString qstr = QString::fromStdString(str);
     ui->lineEdit->setText(qstr);
+    //Establecer el pincel y el color
+    pincel.setColor(Qt::red);
+    painter.setPen(pincel);
+    painter.drawLine(800,450,0,450);
+    painter.drawLine(50,0,50,500);
+    painter.drawText(20,50,"100");
+    painter.drawText(20,250,"50");
+    painter.drawText(20,460,"0");
+    pincel.setColor(Qt::black);
+    painter.setPen(pincel);
+    painter.drawText(100,470,"N1");
+    painter.drawText(235,470,"N2");
+    painter.drawText(350,470,"N3");
+    //Dibujar promedio
+    pincel.setColor(Qt::blue);
+    painter.setPen(pincel);
+    painter.drawRect(x, 450 -((altoN1+altoN2+altoN3)/3),500,0.5);
+
+
 }
 
 int Principal::getAlto(int valor)
